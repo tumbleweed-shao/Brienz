@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{89FA47E0-1A16-4D77-9E53-CC3092028C23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Brienz.ViewModel</RootNamespace>
+    <AssemblyName>Brienz.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\RefBin\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\RefBin\WPFToolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionDatagridViewModel.cs" />
+    <Compile Include="ActionStructure.cs" />
+    <Compile Include="AlertStructure.cs" />
+    <Compile Include="BoolToBrushConverter.cs" />
+    <Compile Include="BrienzHierarchicalData.cs" />
+    <Compile Include="BrienzNewItemViewModel.cs" />
+    <Compile Include="BrienzTagViewModel.cs" />
+    <Compile Include="ChangeFileStatusCommand.cs" />
+    <Compile Include="FileProcessStructure.cs" />
+    <Compile Include="FlowDocumentToXamlConverter.cs" />
+    <Compile Include="LearnFromItViewModel.cs" />
+    <Compile Include="MagneticViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MoveItemViewModel.cs" />
+    <Compile Include="SearchViewModel.cs" />
+    <Compile Include="TagStructure.cs" />
+    <Compile Include="TreeViewAttachedProperty.cs" />
+    <Compile Include="OpenFileCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichTextDependencyObject.cs" />
+    <Compile Include="SixDomainViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Brienz.DB\Brienz.DB.csproj">
+      <Project>{E558E8C5-9E38-4A14-94DD-B042F0260DA9}</Project>
+      <Name>Brienz.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Brienz.RootArchitect\Brienz.RootArchitect.csproj">
+      <Project>{68341582-7A8D-44B5-9E88-1B1A2612C818}</Project>
+      <Name>Brienz.RootArchitect</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Brienz.Util\Brienz.Util.csproj">
+      <Project>{21EED615-2B11-4DA9-8BAC-3BB86953FB82}</Project>
+      <Name>Brienz.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

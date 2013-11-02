@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BrienzDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="BrienzDBModelStoreContainer">
+          <EntitySet Name="BrienzAction" EntityType="BrienzDBModel.Store.BrienzAction" store:Type="Tables" />
+          <EntitySet Name="BrienzAlert" EntityType="BrienzDBModel.Store.BrienzAlert" store:Type="Tables" />
+          <EntitySet Name="BrienzTag" EntityType="BrienzDBModel.Store.BrienzTag" store:Type="Tables" />
+          <EntitySet Name="FileProcessHistory" EntityType="BrienzDBModel.Store.FileProcessHistory" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="BrienzAction">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="Priority" Type="nvarchar" MaxLength="100" />
+          <Property Name="FromResource" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsAllDayEvent" Type="bit" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="ActionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ActionContent" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="BrienzAlert">
+          <Key>
+            <PropertyRef Name="AlertID" />
+          </Key>
+          <Property Name="AlertID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AlertContent" Type="nvarchar" />
+          <Property Name="AlertTime" Type="datetime" />
+          <Property Name="Alert Tag" Type="nvarchar" MaxLength="100" />
+          <Property Name="AlertReason" Type="nvarchar" MaxLength="100" />
+          <Property Name="AlertSubject" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AlertSeverity" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BrienzTag">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TagContent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FileGuid" Type="uniqueidentifier" />
+          <Property Name="TagFrom" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="FileProcessHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FileFolder" Type="nvarchar" MaxLength="100" />
+          <Property Name="OpenTime" Type="datetime" />
+          <Property Name="CloseTime" Type="datetime" />
+          <Property Name="BookMark" Type="nvarchar" MaxLength="100" />
+          <Property Name="FileGuid" Type="uniqueidentifier" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BrienzDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BrienzDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BrienzActions" EntityType="BrienzDBModel.BrienzAction" />
+          <EntitySet Name="BrienzAlerts" EntityType="BrienzDBModel.BrienzAlert" />
+          <EntitySet Name="BrienzTags" EntityType="BrienzDBModel.BrienzTag" />
+          <EntitySet Name="FileProcessHistories" EntityType="BrienzDBModel.FileProcessHistory" />
+        </EntityContainer>
+        <EntityType Name="BrienzAction">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="Subject" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Location" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Priority" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FromResource" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IsAllDayEvent" Type="Boolean" />
+          <Property Name="StartTime" Type="DateTime" />
+          <Property Name="EndTime" Type="DateTime" />
+          <Property Name="ActionID" Type="Guid" Nullable="false" />
+          <Property Name="ActionContent" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BrienzAlert">
+          <Key>
+            <PropertyRef Name="AlertID" />
+          </Key>
+          <Property Name="AlertID" Type="Guid" Nullable="false" />
+          <Property Name="AlertContent" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="AlertTime" Type="DateTime" />
+          <Property Name="Alert_Tag" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AlertReason" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="AlertSubject" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="AlertSeverity" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BrienzTag">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Guid" Nullable="false" />
+          <Property Name="TagContent" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="FileGuid" Type="Guid" />
+          <Property Name="TagFrom" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FileProcessHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FileFolder" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="OpenTime" Type="DateTime" />
+          <Property Name="CloseTime" Type="DateTime" />
+          <Property Name="BookMark" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FileGuid" Type="Guid" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BrienzDBModelStoreContainer" CdmEntityContainer="BrienzDBEntities">
+          <EntitySetMapping Name="BrienzActions"><EntityTypeMapping TypeName="BrienzDBModel.BrienzAction"><MappingFragment StoreEntitySet="BrienzAction">
+            <ScalarProperty Name="Subject" ColumnName="Subject" />
+            <ScalarProperty Name="Location" ColumnName="Location" />
+            <ScalarProperty Name="Priority" ColumnName="Priority" />
+            <ScalarProperty Name="FromResource" ColumnName="FromResource" />
+            <ScalarProperty Name="IsAllDayEvent" ColumnName="IsAllDayEvent" />
+            <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+            <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+            <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+            <ScalarProperty Name="ActionContent" ColumnName="ActionContent" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="BrienzAlerts"><EntityTypeMapping TypeName="BrienzDBModel.BrienzAlert"><MappingFragment StoreEntitySet="BrienzAlert">
+            <ScalarProperty Name="AlertID" ColumnName="AlertID" />
+            <ScalarProperty Name="AlertContent" ColumnName="AlertContent" />
+            <ScalarProperty Name="AlertTime" ColumnName="AlertTime" />
+            <ScalarProperty Name="Alert_Tag" ColumnName="Alert Tag" />
+            <ScalarProperty Name="AlertReason" ColumnName="AlertReason" />
+            <ScalarProperty Name="AlertSubject" ColumnName="AlertSubject" />
+            <ScalarProperty Name="AlertSeverity" ColumnName="AlertSeverity" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="BrienzTags"><EntityTypeMapping TypeName="BrienzDBModel.BrienzTag"><MappingFragment StoreEntitySet="BrienzTag">
+            <ScalarProperty Name="TagID" ColumnName="TagID" />
+            <ScalarProperty Name="TagContent" ColumnName="TagContent" />
+            <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+            <ScalarProperty Name="TagFrom" ColumnName="TagFrom" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FileProcessHistories"><EntityTypeMapping TypeName="BrienzDBModel.FileProcessHistory"><MappingFragment StoreEntitySet="FileProcessHistory">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="FileName" ColumnName="FileName" />
+            <ScalarProperty Name="FileFolder" ColumnName="FileFolder" />
+            <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+            <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+            <ScalarProperty Name="BookMark" ColumnName="BookMark" />
+            <ScalarProperty Name="FileGuid" ColumnName="FileGuid" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="BrienzDBModel.BrienzAction" Width="1.5" PointX="0.75" PointY="0.75" Height="2.41404296875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrienzDBModel.BrienzAlert" Width="1.5" PointX="2.75" PointY="0.75" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrienzDBModel.BrienzTag" Width="1.5" PointX="2.75" PointY="3.75" Height="1.592306315104167" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrienzDBModel.FileProcessHistory" Width="1.5" PointX="4.75" PointY="0.75" Height="2.0853483072916656" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

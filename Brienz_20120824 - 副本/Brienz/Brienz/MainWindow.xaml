@@ -1,0 +1,83 @@
+﻿<Window x:Class="Brienz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Widget ="clr-namespace:Brienz.Windows"
+        xmlns:dg="clr-namespace:Brienz.UserCtrl"
+        x:Name="BrienzMainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="238*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Name="grid1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85*" />
+                <ColumnDefinition Width="418*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="textBlock1" Text="XML ZOne" Background="#FFA50000" />
+            <Grid Grid.Column="1" Name="grid2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="185*" />
+                    <RowDefinition Height="23*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="301*" />
+                        <ColumnDefinition Width="117*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid  Grid.Column="0"  Height="Auto">
+                        <dg:ActionDatagrid Width="Auto"></dg:ActionDatagrid>
+                    </Grid>
+                    <Button Name="btAddAction" Grid.Column="1" Width="Auto" Height="Auto" Content="Add Action" Click="btAddAction_Click"></Button>
+                </Grid>
+                <Grid Name="grid3" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="110*" />
+                        <RowDefinition Height="110*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="210*" />
+                        <ColumnDefinition Width="208*" />
+                        <ColumnDefinition Width="208*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Name="FamilyDataPanel" Grid.Row="0" Grid.Column="2" CanVerticallyScroll="True" CanHorizontallyScroll="True">
+                   <TextBlock>Family</TextBlock>
+                   
+                    </StackPanel>
+                    <StackPanel  Name="JobDataPanel" Grid.Row="0" Grid.Column="1" CanVerticallyScroll="True" CanHorizontallyScroll="True">
+                        <TextBlock>Job</TextBlock>
+                    
+                    </StackPanel>
+                    <StackPanel Name="EmotionDataPanel" Grid.Row="0" Grid.Column="0">
+                        <TextBlock>Emotion</TextBlock>
+
+                    </StackPanel>
+                    <StackPanel Name="FriendsDataPanel" Grid.Row="1" Grid.Column="0" >
+                        <TextBlock>Friends</TextBlock>
+                    
+                    </StackPanel>
+                    <StackPanel  Name="HealthDataPanel" Grid.Row="1" Grid.Column="1" >
+                        <TextBlock>Health</TextBlock>
+                    
+                    </StackPanel>
+                    <StackPanel Name="LifeDataPanel" Grid.Row="1" Grid.Column="2">
+                        <TextBlock>Life</TextBlock>
+                        
+                    </StackPanel>
+                   
+                </Grid>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="0">
+        <TextBlock Name="textBlock2" Text="Header Zone" Background="#FF009300" />
+            <TextBlock x:Name ="tbMarquee" Text="Gogogo Fire in the hole">
+                <TextBlock.Triggers>
+                    
+                </TextBlock.Triggers>
+            </TextBlock>
+            <TextBox x:Name="SearchBox" ></TextBox>
+         <Button x:Name="btnSearch"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

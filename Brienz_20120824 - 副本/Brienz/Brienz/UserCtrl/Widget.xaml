@@ -1,0 +1,76 @@
+﻿
+    
+    <UserControl x:Class="Brienz.Windows.Widget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  xmlns:BtnCMD="clr-namespace:Brienz.ViewModel;assembly=Brienz.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="146" d:DesignWidth="277">
+    <UserControl.DataContext>
+        <BtnCMD:BrienzViewModel x:Name="ViewModelInstance"></BtnCMD:BrienzViewModel>
+    </UserControl.DataContext>
+        <UserControl.Resources>
+
+            <HierarchicalDataTemplate  x:Key="NodeTemplate" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  x:Name="text" Foreground="Blue"   Loaded="text_Loaded"  />
+                <TextBlock  x:Name="aa"  Foreground="Red"  />
+             </StackPanel>
+            <HierarchicalDataTemplate.ItemsSource>
+                <Binding XPath="child::node() " />
+            </HierarchicalDataTemplate.ItemsSource>
+            <HierarchicalDataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=NodeType}" Value="Text">
+                    <Setter TargetName="text" Property="Text" Value="{Binding Path=Value}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=NodeType}" Value="Element">
+                    <Setter TargetName="aa" Property="Text" Value="{Binding Path=Name}"></Setter>
+                </DataTrigger>
+            </HierarchicalDataTemplate.Triggers>
+        </HierarchicalDataTemplate>
+        <!--<HierarchicalDataTemplate x:Key="NodeTemplate"  >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  x:Name="text" Text="{Binding XPath=@Name}"  Foreground="Blue"/>
+                <TextBlock  x:Name="textvalue" Text="{Binding Path=NodeType}"  Foreground="Red"/>
+            </StackPanel>
+            <HierarchicalDataTemplate.ItemsSource>
+                <Binding XPath="*"/>
+            </HierarchicalDataTemplate.ItemsSource>
+        </HierarchicalDataTemplate>-->
+
+        <XmlDataProvider x:Key="xmlDataProvider" />
+    </UserControl.Resources>
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="210*" />
+            <ColumnDefinition Width="90*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Name="stackPanel1">
+            <Button Content="打开文件夹" Height="23" Name="btOpenFileFolder" Width="75" Click="btOpenFileFolder_Click" />
+            <Button Content="打开" Height="23" Name="btOpenFile" Width="75" Command="{Binding OpenFileCMD}"  CommandParameter="{Binding CurrentSelectFilePath }" />
+            <Button Content="笔记心得" Height="23" Name="btLearntFromIt" Width="75" Click="btLearntFromIt_Click" />
+            <Button Content="给该资源添加标注" Height="23" Name="button4" Width="75" />
+            <RadioButton Content="资料" Height="16" Name="radioButton1" />
+            <RadioButton Content="书籍" Height="16" Name="radioButton2" />
+            <RadioButton Content="网站链接" Height="16" Name="radioButton3" />
+        </StackPanel>
+        <!--<TreeView x:Name="treeVResource" Height="150"  ItemsSource="{Binding Source={StaticResource xmlDataProvider}, XPath=*}" 
+                  ItemTemplate= "{StaticResource NodeTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility="Auto"  >
+        </TreeView>-->
+        <TreeView x:Name="treeVResource" Height="150"   ItemsSource="{Binding Source={StaticResource xmlDataProvider}, XPath=*}"  BtnCMD:DemoAttachedProps.SelectedItem="{x:Null}"
+                  ItemTemplate= "{StaticResource NodeTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility="Auto"  >
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <!--<Style.Triggers>
+                        <Trigger  Property="IsSelected" Value="True">
+                            <Setter Property="DataContext" Value="{Binding Path=customObjectProperty, Mode=TwoWay}" />
+                        </Trigger>
+                    </Style.Triggers>-->
+                    <!--<Setter Property="IsExpanded" Value="True" />-->
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+    </Grid>
+</UserControl>

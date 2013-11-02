@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Brienz.UserCtrl.ActionDatagrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dg ="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+             mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:collection="clr-namespace:System.Collections;assembly=mscorlib"
+             xmlns:vm ="clr-namespace:Brienz.ViewModel;assembly=Brienz.ViewModel"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <vm:ActionDatagridViewModel x:Name="ActionDataGrid"></vm:ActionDatagridViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style x:Key="defaultCellStyle" TargetType="{x:Type dg:DataGridCell}">
+            <Style.Triggers>
+                <Trigger Property="IsEditing" Value="True">
+                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Trigger>
+                <!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, 
+                                                               Path=(Column).(local:CustomColumn.IsPrimaryKey), 
+                                                               Mode=OneWay}" 
+                                             Value="True">
+                    <Setter Property="Background" Value="Tan" />
+                    <Setter Property="Foreground" Value="Red" />
+                </DataTrigger>-->
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="defaultRowStyle" TargetType="{x:Type dg:DataGridRow}">
+            <Style.Triggers>
+                <Trigger Property="IsEditing" Value="True">
+                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </UserControl.Resources>
+    <Grid >
+        <Grid.Resources>
+            <vm:NewAction x:Key="actionDataGrid"/>
+        </Grid.Resources>
+        <dg:DataGrid AutoGenerateColumns="False" 
+                     Name="dataGrid1" 
+                     CanUserSortColumns="True"
+                     HorizontalScrollBarVisibility="Auto"
+                     VerticalScrollBarVisibility="Auto"
+                     ItemsSource="{Binding Source={StaticResource actionDataGrid} }"
+                     RowStyle="{StaticResource defaultRowStyle}"
+                     CellStyle="{StaticResource defaultCellStyle}" HorizontalAlignment="Left">
+                <dg:DataGrid.Columns>
+                <dg:DataGridTextColumn Width="10" x:Name="FirstNameColumn" Header="ID" />
+                <dg:DataGridTextColumn Width="100" 
+                                       Header="Content" 
+                                       DataFieldBinding="{Binding Path=LastName}"/>
+                <dg:DataGridCheckBoxColumn Width="80" 
+                                           Header="Estimation" 
+                                           DataFieldBinding="{Binding Path=LikesCake}" />
+                <!--<dg:DataGridComboBoxColumn Width="120" 
+                                           Header="Cake" 
+                                           DataFieldBinding="{Binding Path=Cake}">
+                <dg:DataGridComboBoxColumn.ItemsSource>
+                    <collection:ArrayList>
+                        <sys:String>Chocolate</sys:String>
+                        <sys:String>Vanilla</sys:String>
+                    </collection:ArrayList>
+                </dg:DataGridComboBoxColumn.ItemsSource>
+            </dg:DataGridComboBoxColumn>-->
+                <dg:DataGridHyperlinkColumn Width="200" 
+                                            Header="Open" 
+                                            CanUserSort="False" 
+                                            DataFieldBinding="{Binding Path=Homepage}" />
+                <dg:DataGridTemplateColumn Width="150" Header="Option">
+                <dg:DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Path=Picture}" Height="35" Width="35" />
+                    </DataTemplate>
+                </dg:DataGridTemplateColumn.CellTemplate>
+                <dg:DataGridTemplateColumn.CellEditingTemplate>
+                    <DataTemplate>
+                        <ComboBox SelectedItem="{Binding Path=Picture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.ItemsSource>
+                                <collection:ArrayList>
+                                    <sys:String>Images\02.jpg</sys:String>
+                                    <sys:String>Images\03.JPG</sys:String>
+                                    <sys:String>Images\04.jpg</sys:String>
+                                    <sys:String>Images\05.jpg</sys:String>
+                                    <sys:String>Images\06.jpg</sys:String>
+                                </collection:ArrayList>
+                            </ComboBox.ItemsSource>
+                        </ComboBox>
+                    </DataTemplate>
+                </dg:DataGridTemplateColumn.CellEditingTemplate>
+            </dg:DataGridTemplateColumn>
+                <dg:DataGridTextColumn Width="100" 
+                                       Header="Priority" 
+                                       DataFieldBinding="{Binding Path=LastName}"/>
+            </dg:DataGrid.Columns>
+        </dg:DataGrid>
+    </Grid>
+</UserControl>
